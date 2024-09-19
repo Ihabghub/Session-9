@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Create and style the chocolate bar
+const chocolateBar = document.createElement('div');
+chocolateBar.className = 'chocolate-bar';
+
+// Create sections for the bar
+const colors = ['', '', '', '', '', ''];
+
+colors.forEach((colors, index) => {
+    const section = document.createElement('div');
+    section.className = 'section';
+    section.style.backgroundColor = colors[index];
+    section.textContent = colors;
+    chocolateBar.appendChild(section);
+});
+
+// Create and style the button
+const button = document.createElement('button');
+button.id = 'changeColorsButton';
+button.textContent = 'Change Colors';
+
+// Append elements to the body
+document.body.appendChild(chocolateBar);
+document.body.appendChild(button);
+
+
+// Function to generate random colors
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Change colors on button click
+button.addEventListener('click', () => {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.style.backgroundColor = getRandomColor();
+    });
+});
+
+    </script>
+    <style>
+         body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        margin-top: 100px;
+    }
+    .chocolate-bar {
+        display: inline-flex;
+        width: 300px;
+        height: 100px;
+        border: 5px solid #8B4513; /* Chocolate color */
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: white; /* Default text color */
+        transition: background-color 0.5s;
+    }
+    button{
+        font-size: 20px;
+        width: 100px;
+        height: 50px;
+    }
+    </style>
+</body>
+</html>
